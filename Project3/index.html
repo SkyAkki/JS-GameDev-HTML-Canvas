@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NPC movement animations</title>
+	<link rel="stylesheet" href="style.css"/>
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<label for='numberOfEnemies'>Number Of Enemies (of each type): <span id='showNumberOfEnemies'></span></label>
+	<input type='range' min='1' max='100' step='1' value='5' id='slider' name='numberOfEnemies'>
+	<div id="container">
+		<canvas id="canvas1"></canvas>
+	</div>
+	<form>
+		<div>
+			<label for='jiggleEnemy'>Jiggle Enemy:</label>
+			<input type='checkbox' name='jiggleEnemy' id='jiggleEnemy' checked>
+		</div>
+		<div>
+			<label for='wavyFlyingEnemy'>Wavy Flying Enemy:</label>
+			<input type='checkbox' name='wavyFlyingEnemy' id='wavyFlyingEnemy' checked>
+		</div>
+		<div>
+			<label for='circluarPatrolEnemy'>Circular Patrol Enemy:</label>
+			<input type='checkbox' name='circluarPatrolEnemy' id='circluarPatrolEnemy' checked>
+		</div>
+		<div>
+			<label for='linearSawEnemy'>Linear Saw Enemy:</label>
+			<input type='checkbox' name='linearSawEnemy' id='linearSawEnemy' checked>
+		</div>
+	</form>
+	<div class='angleTuner'>
+		<p>Turn number of enemies to a high value (like 100) and deselect every enemy type other than Circular Patrol Enemy. Now vary the horizontal and vertical angles to see funky enemy pathing patterns.</p>
+		<div>
+			<label for='horizontal'>Horizontal: <span id='showHorizontalAngle'></span></label>
+			<input type='range' min='30' max='720' step='30' value='360' name='horizontal' id='horizontal' class='angle' checked>
+		</div>
+		<div>
+			<label for='vertical'>Vertical: <span id='showVerticalAngle'></span></label>
+			<input type='range' min='30' max='720' step='30' value='360' name='vertical' id='vertical' class='angle' checked>
+		</div>
+	</div>
+</body>
+</html>

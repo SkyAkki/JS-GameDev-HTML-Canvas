@@ -1,0 +1,25 @@
+body{
+	font-size: 25px;
+}
+#container{
+	position: absolute;
+	width: 500px;
+	transform: translate(-50%,-50%);
+	top: 50%;
+	left: 50%;
+	font-size: 25px
+}
+#canvas1{
+	position: relative;
+	height: 1000px;
+	width: 500px;
+}
+#slider{
+	width: 100%;
+}
+.angleTuner{
+	width: 400px;
+}
+#horizontal, #vertical{
+	width: 100%;
+}
