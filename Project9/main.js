@@ -30,6 +30,9 @@ window.addEventListener('load',function(){
             this.enemies = []; 
             this.enemyTimer = 0;
             this.enemyInterval = 1000;
+
+            this.player.currentState = this.player.states[0];
+            this.player.currentState.enter(); //to activate the inital default state
         }
         update(deltaTime){
             this.background.update();

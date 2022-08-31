@@ -16,9 +16,7 @@ export class Player{
         this.weight = 1;
 
         //State Design Pattern
-        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this), new Rolling(this)]; //to store All the available states
-        this.currentState = this.states[0];
-        this.currentState.enter(); //to activate the inital default state
+        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game)]; //to store All the available states
 
         //Sprite Animation
         this.maxFrame;
