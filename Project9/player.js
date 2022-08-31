@@ -19,8 +19,14 @@ export class Player{
         this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)]; //to store All the available states
         this.currentState = this.states[0];
         this.currentState.enter(); //to activate the inital default state
+
+        //Sprite Animation
+        this.maxFrame;
+        this.fps = 30;
+        this.frameInterval = 1000/this.fps;
+        this.frameTimer = 0;
     }
-    update(input){
+    update(input, deltaTime){
         this.currentState.handleInput(input.keys);
         //Horizontal Movement
         this.x += this.speed;
@@ -32,10 +38,19 @@ export class Player{
 
         //vertical movement
         // this.y += this.vy; This doesn't work as intended
-        //if(input.keys.includes('ArrowUp') && this.onGround()) this.vy -= 20;
         this.y += this.vy;
         if(!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
+
+        //Sprite Animation
+        if(this.frameTimer > this.frameInterval){
+            this.frameTimer = 0;
+            if (this.frameX < this.maxFrame) this.frameX++;
+            else this.frameX = 0;
+        }
+        else{
+            this.frameTimer += deltaTime;
+        }
     }
     draw(context){
         context.drawImage(this.image,this.width * this.frameX, this.height * this.frameY, this.width, this.height,this.x,this.y,this.width,this.height);
