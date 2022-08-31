@@ -27,11 +27,11 @@ export class Player{
         this.frameTimer = 0;
     }
     update(input, deltaTime){
-        this.currentState.handleInput(input.keys);
+        this.currentState.handleInput(input);
         //Horizontal Movement
         this.x += this.speed;
-        if(input.keys.includes('ArrowRight')) this.speed = this.maxSpeed;
-        else if(input.keys.includes('ArrowLeft')) this.speed = -this.maxSpeed;
+        if(input.includes('ArrowRight')) this.speed = this.maxSpeed;
+        else if(input.includes('ArrowLeft')) this.speed = -this.maxSpeed;
         else this.speed = 0;
         if(this.x<0) this.x = 0;
         else if(this.x > this.game.width - this.width) this.x = this.game.width - this.width;

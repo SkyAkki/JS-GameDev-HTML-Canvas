@@ -15,7 +15,7 @@ window.addEventListener('load',function(){
             this.input = new InputHandler();
         }
         update(deltaTime){
-            this.player.update(this.input, deltaTime);
+            this.player.update(this.input.keys, deltaTime);
         }
         draw(context){
             this.player.draw(context)
