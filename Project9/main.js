@@ -2,6 +2,7 @@ import {Player} from './player.js';
 import {InputHandler} from './input.js';
 import {Background} from './background.js';
 import {FlyingEnemy, GroundEnemy, ClimbingEnemy} from './enemies.js';
+import {UI} from './UI.js';
 
 window.addEventListener('load',function(){
     const canvas = canvas1;
@@ -19,10 +20,11 @@ window.addEventListener('load',function(){
 
             this.debug = false;
             this.score = 0;
-            
+
             this.background = new Background(this);
             this.player = new Player(this);
             this.input = new InputHandler(this);
+            this.ui = new UI(this);
 
             //Add Enemies
             this.enemies = []; 
@@ -52,7 +54,8 @@ window.addEventListener('load',function(){
             this.player.draw(context);
             this.enemies.forEach(enemy => {
                 enemy.draw(context);
-            })
+            });
+            this.ui.draw(context);
         }
         addEnemy(){
             if(this.speed > 0 && Math.random() > 0.5) this.enemies.push(new GroundEnemy(this));

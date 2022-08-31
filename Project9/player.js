@@ -73,7 +73,7 @@ export class Player{
                 enemy.y + enemy.height > this.y
             ){
                 enemy.markedForDeletion = true;
-                this.game.scroe++;
+                this.game.score++;
             }
             else{
 
