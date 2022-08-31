@@ -1,4 +1,4 @@
-import { Sitting, Running, Jumping, Falling } from "./playerState.js";
+import { Sitting, Running, Jumping, Falling, Rolling } from "./playerState.js";
 
 export class Player{
     constructor(game){
@@ -16,7 +16,7 @@ export class Player{
         this.weight = 1;
 
         //State Design Pattern
-        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)]; //to store All the available states
+        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this), new Rolling(this)]; //to store All the available states
         this.currentState = this.states[0];
         this.currentState.enter(); //to activate the inital default state
 
