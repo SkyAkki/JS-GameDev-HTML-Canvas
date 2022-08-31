@@ -16,9 +16,13 @@ window.addEventListener('load',function(){
             this.groundMargin = 80;
             this.speed = 0;
             this.maxSpeed = 3;
+
+            this.debug = false;
+            this.score = 0;
+            
             this.background = new Background(this);
             this.player = new Player(this);
-            this.input = new InputHandler();
+            this.input = new InputHandler(this);
 
             //Add Enemies
             this.enemies = []; 
