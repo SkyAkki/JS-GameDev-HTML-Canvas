@@ -14,8 +14,8 @@ window.addEventListener('load',function(){
             this.player = new Player(this);
             this.input = new InputHandler();
         }
-        update(){
-            this.player.update(this.input);
+        update(deltaTime){
+            this.player.update(this.input, deltaTime);
         }
         draw(context){
             this.player.draw(context)
@@ -23,11 +23,18 @@ window.addEventListener('load',function(){
     }
 
     const game = new Game(canvas.width, canvas.height);
-    function animate(){
+    //Sprite Animation
+    let lastTime = 0;
+
+    function animate(timeStamp){
+        //Sprite Animation : Since our spriteSheet is designed for low fps, we need to render it at lower speed. We need to do this in an independent manner, i.e. fps of entire game should remain same and only this spritesheet should be affected.
+        let deltaTime = timeStamp - lastTime;
+        lastTime = timeStamp;
+
         ctx.clearRect(0,0,canvas.width,canvas.height);
-        game.update();
+        game.update(deltaTime);
         game.draw(ctx);
         requestAnimationFrame(animate);
     }
-    animate();
+    animate(0);
 });
