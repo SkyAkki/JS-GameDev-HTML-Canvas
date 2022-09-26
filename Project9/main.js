@@ -20,6 +20,8 @@ window.addEventListener('load',function(){
 
             this.debug = false;
             this.score = 0;
+            this.particles = [];
+            this.maxParticels = 50;
 
             this.background = new Background(this);
             this.player = new Player(this);
@@ -51,12 +53,24 @@ window.addEventListener('load',function(){
                     this.enemies.splice(this.enemies.indexOf(enemy), 1);
                 }
             })
+
+            //Add Particle
+            this.particles.forEach((particle,index) => {
+                particle.update();
+                if(particle.markedForDeletion) this.particles.splice(index,1);
+            });
+            if(this.particles.length > this.maxParticels){
+                this.particles = this.particles.splice(0,this.maxParticels);
+            }
         }
         draw(context){
             this.background.draw(context); //calling it before drawing the player so that background is behind the player
             this.player.draw(context);
             this.enemies.forEach(enemy => {
                 enemy.draw(context);
+            });
+            this.particles.forEach(particle => {
+                particle.draw(context);
             });
             this.ui.draw(context);
         }
