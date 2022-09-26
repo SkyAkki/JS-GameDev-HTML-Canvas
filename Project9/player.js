@@ -1,4 +1,4 @@
-import { Sitting, Running, Jumping, Falling, Rolling } from "./playerState.js";
+import { Sitting, Running, Jumping, Falling, Rolling, Diving, Hit } from "./playerState.js";
 
 export class Player{
     constructor(game){
@@ -16,7 +16,7 @@ export class Player{
         this.weight = 1;
 
         //State Design Pattern
-        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game)]; //to store All the available states
+        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)]; //to store All the available states
 
         //Sprite Animation
         this.maxFrame;
@@ -32,6 +32,8 @@ export class Player{
         if(input.includes('ArrowRight')) this.speed = this.maxSpeed;
         else if(input.includes('ArrowLeft')) this.speed = -this.maxSpeed;
         else this.speed = 0;
+
+        //horizontal boundaries
         if(this.x<0) this.x = 0;
         else if(this.x > this.game.width - this.width) this.x = this.game.width - this.width;
 
@@ -41,6 +43,10 @@ export class Player{
         if(!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
 
+        //vertical boundaries
+        if(this.y > this.game.height - this.height - this.game.groundMargin){
+            this.y = this.game.height - this.height - this.game.groundMargin;
+        }
         //Sprite Animation
         if(this.frameTimer > this.frameInterval){
             this.frameTimer = 0;
@@ -71,10 +77,11 @@ export class Player{
                 enemy.y + enemy.height > this.y
             ){
                 enemy.markedForDeletion = true;
-                this.game.score++;
-            }
-            else{
-
+                if(this.currentState === this.states[4] || this.currentState === this.states[5]){
+                    this.game.score++;
+                }else{
+                    this.setState(6,0);
+                }
             }
         })
     }
