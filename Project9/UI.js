@@ -2,7 +2,8 @@ export class UI{
     constructor(game){
         this.game = game;
         this.fontSize = 30;
-        this.fontFamily = 'Helvetica';
+        this.fontFamily = 'Creepster';
+        this.livesImage = lives;
     }
     draw(context){
         context.save();
@@ -18,6 +19,10 @@ export class UI{
 
         context.font = this.fontSize * 0.8 + 'px ' + this.fontFamily;
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 20, 80);
+
+        for(let i = 0; i<this.game.livesCount; i++){
+            context.drawImage(this.livesImage,20 * i + 20,95,25,25);
+        }
         if(this.game.gameOver){
             context.textAlign = 'center';
             context.font = this.fontSize * 2 + 'px ' + this.fontFamily;

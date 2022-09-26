@@ -7,7 +7,7 @@ import {UI} from './UI.js';
 window.addEventListener('load',function(){
     const canvas = canvas1;
     const ctx = canvas.getContext('2d');
-    canvas.width = 500;
+    canvas.width = 900;
     canvas.height = 500;
 
     class Game{
@@ -40,6 +40,8 @@ window.addEventListener('load',function(){
 
             this.time = 0;
             this.maxTime = 10000;
+
+            this.livesCount = 5;
         }
         update(deltaTime){
             this.time += deltaTime;

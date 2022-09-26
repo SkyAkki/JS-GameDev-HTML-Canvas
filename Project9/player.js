@@ -82,6 +82,9 @@ export class Player{
                     this.game.score++;
                 }else{
                     this.setState(6,0);
+                    this.game.livesCount--;
+                    this.game.score -= 5;
+                    if(this.game.livesCount <= 0) this.game.gameOver = true;
                 }
             }
         })
